@@ -87,10 +87,12 @@ public class SensingService extends Service {
         bw = new BufferedWriter(fw);
         isWriterReady = true;
 
-        //register sensor
-        Sensor ambTemp;
-        ambTemp = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
-        
+    //    register sensor
+         Sensor rH, temp, ambTemp;
+         rH = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+         temp = sensorManager.getDefaultSensor(Sensor.TYPE_TEMPERATURE);
+         ambTemp = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+
 /*        Sensor accSensor, graSensor, gyrSensor, linSensor, rotSensor;
         accSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         graSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
@@ -106,8 +108,10 @@ public class SensingService extends Service {
         sensorManager.registerListener(sensorEventListener, linSensor, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(sensorEventListener, rotSensor, SensorManager.SENSOR_DELAY_FASTEST);
 */
-        sensorManager.registerListener(sensorEventListener, ambTemp, sensorManager.SENSOR_DELAY_NORMAL);
-
+        sensorManager.registerListener(sensorEventListener, rH, sensorManager.SENSOR_DELAY_FASTEST);
+        sensorManager.registerListener(sensorEventListener, temp, sensorManager.SENSOR_DELAY_FASTEST);
+        sensorManager.registerListener(sensorEventListener, ambTemp, sensorManager.SENSOR_DELAY_FASTEST);
+        
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
         return messenger.getBinder();
