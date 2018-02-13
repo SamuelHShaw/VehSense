@@ -129,6 +129,8 @@ public class OBDService extends Service {
             commandList.add((new MassAirFlowCommand()));
             commandList.add((new AirFuelRatioCommand()));
             commandList.add(new SpeedCommand());
+            commandList.add(new RPMCommand());
+
 
             file = new File(Environment.getExternalStorageDirectory() + foldername + filename);
 

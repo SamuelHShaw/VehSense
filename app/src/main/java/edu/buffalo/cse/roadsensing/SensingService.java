@@ -88,7 +88,10 @@ public class SensingService extends Service {
         isWriterReady = true;
 
         //register sensor
-        Sensor accSensor, graSensor, gyrSensor, linSensor, rotSensor;
+        Sensor ambTemp;
+        ambTemp = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        
+/*        Sensor accSensor, graSensor, gyrSensor, linSensor, rotSensor;
         accSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         graSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
         gyrSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
@@ -102,6 +105,8 @@ public class SensingService extends Service {
         sensorManager.registerListener(sensorEventListener, gyrSensor, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(sensorEventListener, linSensor, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(sensorEventListener, rotSensor, SensorManager.SENSOR_DELAY_FASTEST);
+*/
+        sensorManager.registerListener(sensorEventListener, ambTemp, sensorManager.SENSOR_DELAY_NORMAL);
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
